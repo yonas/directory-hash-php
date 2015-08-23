@@ -1,0 +1,24 @@
+{
+    "name"       : "yonas/directory-hash-php",
+    "type"       : "library",
+    "description": "A standard algorithm to compute the hash of a directory and all it's files.",
+    "keywords"   : ["hash", "directory"],
+    "license"    : "MIT",
+    "homepage"   : "https://github.com/yonas/directory-hash-php",
+    "support"    : {
+        "issues": "https://github.com/yonas/directory-hash-php/issues",
+        "source": "https://github.com/yonas/directory-hash-php"
+    },
+    "authors"    : [
+        {
+          "name"    : "Yonas Yanfa",
+          "homepage": "http://fizk.net"
+        }
+    ],
+    "require": {
+        "php"                        : ">=5.1.2"
+    },
+    "autoload": {
+        "files": ["src/directory-hash.php"]
+    }
+}
