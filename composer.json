@@ -16,9 +16,11 @@
         }
     ],
     "require": {
-        "php"                        : ">=5.1.2"
+        "php" : ">=5.1.2"
     },
     "autoload": {
-        "files": ["src/directory-hash.php"]
+        "psr-4": {
+            "fizk\\StandardDirectoryHash\\": "src/"
+        }
     }
 }

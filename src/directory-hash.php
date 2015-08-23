@@ -1,4 +1,5 @@
 <?php
+namespace fizk\StandardDirectoryHash;
 
 interface Hash {
     public function hash($data);
