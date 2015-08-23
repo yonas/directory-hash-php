@@ -18,6 +18,7 @@
     "require": {
         "php" : ">=5.1.2"
     },
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "fizk\\StandardDirectoryHash\\": "src/"
