@@ -16,15 +16,21 @@ class DirectoryHash {
      * Compute the standard hash of a directory.
      * This includes all it's files and subdirectories, but not the current directory name.
      */
-    public function hash() {
-        $hash_tree = array();
+    public function hash($options = array()) {
+        $ignore_files = !empty($options['ignore_files']);
+
         $objects = new \RecursiveIteratorIterator(
             new $this->iterator_class($this->path),
             \RecursiveIteratorIterator::SELF_FIRST
         );
 
         // Collect hashes of all files and directories.
+        $hash_tree = array();
         foreach ($objects as $name => $object){
+            if ($ignore_files && in_array($name, $options['ignore_files'])) {
+                continue;
+            }
+
             $hash_tree[$name] = $object;
         }
 

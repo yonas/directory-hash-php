@@ -10,9 +10,9 @@ class FilePathHash implements Hash {
         $this->algo = $algo;
     }
 
-    public function hash($filepath) {
+    public function hash($file_iterator) {
         // A file path hash consists of a hash of the file path and a hash of the file data.
-        return $this->algo->hash($this->path_hash($filepath) . $this->file_hash($filepath));
+        return $this->algo->hash($this->path_hash($file_iterator) . $this->file_hash($file_iterator));
     }
 
     /**
@@ -20,17 +20,18 @@ class FilePathHash implements Hash {
      * Directories are marked with a directory marker, so that the path hash will detect
      * the difference between files and directories of the same name.
      */
-    protected function path_hash($filepath) {
+    protected function path_hash($file_iterator) {
         $path_hash = '';
-        $path = $this->dir_parents(substr($filepath, 2));
+        $path = $this->dir_parents($file_iterator->getSubPathname());
         $leaf = array_pop($path);
 
         foreach ($path as &$k) {
             $path_hash .= $this->algo->hash(self::DIRECTORY_MARKER() . $k);
         }
 
-        if (is_dir($filepath))
+        if ($file_iterator->isDir()) {
             $leaf = self::DIRECTORY_MARKER() . $leaf;
+        }
 
         $path_hash .= $this->algo->hash($leaf);
 
@@ -48,8 +49,8 @@ class FilePathHash implements Hash {
     /**
      * Get a hash of the file data.
      */
-    protected function file_hash($filepath) {
-        return $this->algo->hash_file($filepath);
+    protected function file_hash($file_iterator) {
+        return $this->algo->hash_file($file_iterator->getPathname());
     }
 
     /**
