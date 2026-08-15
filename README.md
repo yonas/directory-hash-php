@@ -1,5 +1,7 @@
+
+
 # directory-hash
-A standard algorithm to compute the hash of a directory, including all it's files and directory strucutre.
+A standard algorithm to compute the hash of a directory, including all it's files and directory structure.
 
 ## Example
 ```php
